@@ -8,8 +8,10 @@ import { Ionicons } from '@expo/vector-icons';
 export const AboutScreen: React.FC = () => {
   const theme = useTheme();
 
-  // TODO: Buscar hash do commit dinamicamente
-  const commitHash = 'N/A';
+  // Hash do commit atual
+  // Em produção, deve ser definido via variável de ambiente no build
+  // Para desenvolvimento, mostra 'dev-mode'
+  const commitHash = process.env.EXPO_PUBLIC_COMMIT_HASH || (__DEV__ ? 'dev-mode' : 'N/A');
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
