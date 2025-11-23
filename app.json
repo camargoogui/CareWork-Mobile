@@ -21,7 +21,8 @@
         "backgroundColor": "#6B7FD7"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.camargogui.CareWork"
     },
     "web": {
       "favicon": "./assets/favicon.png"
