@@ -28,12 +28,6 @@
       },
       "ios": {
         "buildConfiguration": "Release"
-      },
-      "env": {
-        "EXPO_PUBLIC_COMMIT_HASH": ""
-      },
-      "prebuild": {
-        "clean": true
       }
     }
   },
