@@ -9,7 +9,12 @@
     "web": "expo start --web",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "format": "prettier --write \"**/*.{ts,tsx,json,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "get-commit-hash": "node scripts/get-commit-hash.js",
+    "prebuild": "bash scripts/setup-build-env.sh",
+    "build:android": "npm run get-commit-hash && eas build --platform android --profile production",
+    "build:ios": "npm run get-commit-hash && eas build --platform ios --profile production",
+    "build:all": "npm run get-commit-hash && eas build --platform all --profile production"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
