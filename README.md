@@ -16,6 +16,21 @@ O **CareWork** é uma solução completa de bem-estar corporativo que permite:
 
 ---
 
+
+## 👥 Integrantes do Grupo
+
+- **Bianca Vitoria** - 2TDSPZ
+- **Guilherme Camargo** - 2TDSPM
+- **Icaro Americo** - 2TDSPM
+
+---
+
+## LINK DO VIDEO
+
+https://youtu.be/K3Jqc6w6cRw
+
+---
+
 ## 🚀 Tecnologias Utilizadas
 
 - **React Native** com **Expo**
@@ -126,13 +141,15 @@ CareWork/
 │   │   └── AboutScreen.tsx
 │   ├── services/        # Serviços de API
 │   │   ├── apiService.ts
+│   │   ├── api.ts
 │   │   ├── checkinService.ts
 │   │   ├── tipService.ts
 │   │   ├── reportService.ts
 │   │   ├── insightsService.ts
 │   │   ├── goalsService.ts
 │   │   ├── achievementsService.ts
-│   │   └── remindersService.ts
+│   │   ├── remindersService.ts
+│   │   └── storageService.ts
 │   ├── theme/           # Tema e estilos
 │   │   ├── colors.ts
 │   │   ├── fonts.ts
@@ -439,17 +456,18 @@ O app possui um sistema robusto de tratamento de erros:
 
 ```json
 {
-  "expo": "~51.0.0",
-  "react": "18.2.0",
-  "react-native": "0.74.0",
-  "@react-navigation/native": "^6.1.0",
-  "@react-navigation/stack": "^6.3.0",
-  "@react-navigation/bottom-tabs": "^6.5.0",
-  "react-native-gesture-handler": "~2.16.0",
-  "react-native-safe-area-context": "4.10.0",
-  "@react-native-async-storage/async-storage": "1.23.0",
-  "@expo/vector-icons": "^14.0.0",
-  "typescript": "~5.3.0"
+  "expo": "~54.0.25",
+  "react": "19.1.0",
+  "react-native": "0.81.5",
+  "@react-navigation/native": "^7.1.19",
+  "@react-navigation/stack": "^7.6.3",
+  "@react-navigation/bottom-tabs": "^7.8.4",
+  "react-native-gesture-handler": "~2.28.0",
+  "react-native-safe-area-context": "^5.6.2",
+  "@react-native-async-storage/async-storage": "^2.1.0",
+  "@expo/vector-icons": "^15.0.3",
+  "expo-font": "~14.0.9",
+  "typescript": "~5.9.2"
 }
 ```
 
@@ -498,6 +516,8 @@ Este projeto é privado e proprietário.
 - [x] Design system completo
 - [x] Navegação funcional
 - [x] Persistência de dados
+- [x] Publicação no Firebase App Distribution
+- [x] Commit hash na tela "Sobre"
 
 ---
 
