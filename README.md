@@ -19,9 +19,9 @@ O **CareWork** é uma solução completa de bem-estar corporativo que permite:
 
 ## 👥 Integrantes do Grupo
 
-- **Bianca Vitoria** - 2TDSPZ
-- **Guilherme Camargo** - 2TDSPM
-- **Icaro Americo** - 2TDSPM
+- **Bianca Vitoria** - RM556270 - 2TDSPZ
+- **Guilherme Camargo** - RM555166 - 2TDSPM
+- **Icaro Americo** - RM555131 - 2TDSPM
 
 ---
 
