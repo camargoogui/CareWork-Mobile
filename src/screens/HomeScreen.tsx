@@ -45,13 +45,7 @@ export const HomeScreen: React.FC = () => {
       const tomorrow = new Date(today);
       tomorrow.setDate(tomorrow.getDate() + 1);
 
-      console.log('🔍 Buscando check-ins de hoje:', {
-        from: today.toISOString(),
-        to: tomorrow.toISOString(),
-      });
-
       const checkins = await checkinService.getCheckinsByDateRange(today, tomorrow);
-      console.log('📊 Check-ins encontrados:', checkins.length);
       
       if (checkins.length > 0) {
         // Ordenar por data de criação (mais recente primeiro) e pegar o primeiro
@@ -62,7 +56,6 @@ export const HomeScreen: React.FC = () => {
         console.log('✅ Check-in de hoje carregado:', sortedCheckins[0].id);
       } else {
         setTodayCheckin(null);
-        console.log('ℹ️ Nenhum check-in encontrado para hoje');
       }
 
       // Carregar streak

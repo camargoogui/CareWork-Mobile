@@ -31,10 +31,8 @@ export const clearOldLocalData = async (): Promise<void> => {
     
     if (oldKeys.length > 0) {
       await AsyncStorage.multiRemove(oldKeys);
-      console.log(`✅ ${oldKeys.length} chaves antigas removidas do AsyncStorage`);
     }
     
-    console.log('✅ Dados antigos do AsyncStorage removidos');
   } catch (error) {
     console.error('Erro ao limpar dados antigos:', error);
   }

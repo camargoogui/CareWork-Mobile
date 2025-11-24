@@ -12,35 +12,42 @@ export const insightsService = {
     try {
       return await apiService.getTrends(period);
     } catch (error: any) {
-      // Se não houver dados suficientes (erro 500), retornar null silenciosamente
-      // Não logar como erro, pois é esperado quando não há dados suficientes
-      if (error?.statusCode === 500) {
-        // Verificar se é erro de dados insuficientes
-        const errorMessage = error?.message || '';
-        const hasSequenceError = error?.errors?.some((e: string) => 
+      // Se não houver dados suficientes, retornar null silenciosamente
+      // Não logar como erro/warning, pois é esperado quando não há dados suficientes
+      const errorMessage = error?.message || '';
+      
+      // Verificar se é erro de dados insuficientes (várias possibilidades)
+      const isInsufficientDataError = 
+        error?.statusCode === 500 ||
+        errorMessage.toLowerCase().includes('faltam campos obrigatórios') ||
+        errorMessage.toLowerCase().includes('resposta inválida') ||
+        errorMessage.toLowerCase().includes('sequence') ||
+        errorMessage.toLowerCase().includes('no elements') ||
+        error?.errors?.some((e: string) => 
           e.includes('Sequence contains no elements') || 
           e.includes('sequence') ||
           e.toLowerCase().includes('no elements')
         );
-        
-        if (hasSequenceError || errorMessage.toLowerCase().includes('sequence') || errorMessage.toLowerCase().includes('no elements')) {
-          // Não há dados suficientes - isso é normal, não é um erro
-          return null;
+      
+      if (isInsufficientDataError) {
+        // Não há dados suficientes - isso é normal, não é um erro
+        // Retornar null silenciosamente sem logar warning
+        return null;
+      }
+      
+      // Outros erros (rede, etc) - só logar se for erro de conexão crítico
+      if (error?.statusCode === 0) {
+        // Erro de conexão - pode logar em modo debug, mas não como warning
+        if (__DEV__) {
+          console.log('ℹ️ Erro de conexão ao obter tendências (modo desenvolvimento)');
         }
-        
-        // Outro erro 500 - pode ser problema da API, mas não vamos quebrar o app
-        console.warn('⚠️ Erro ao obter tendências (pode ser falta de dados):', errorMessage);
         return null;
       }
       
-      // Outros erros (rede, etc) - logar mas não quebrar o app
-      if (error?.statusCode === 0 || error?.statusCode === undefined) {
-        console.warn('⚠️ Erro de conexão ao obter tendências');
-        return null;
+      // Erro não esperado - só logar em desenvolvimento
+      if (__DEV__) {
+        console.log('ℹ️ Erro ao obter tendências:', error?.message || 'Erro desconhecido');
       }
-      
-      // Erro não esperado - logar mas retornar null para não quebrar o app
-      console.warn('⚠️ Erro ao obter tendências:', error?.message || 'Erro desconhecido');
       return null;
     }
   },

@@ -7,6 +7,42 @@ import { Ionicons } from '@expo/vector-icons';
 import { Tip } from '../types/api';
 import { tipService } from '../services/tipService';
 
+// Mapeamento de ícones inválidos para ícones válidos
+const iconMap: Record<string, keyof typeof Ionicons.glyphMap> = {
+  boundaries: 'resize-outline',
+  break: 'pause-outline',
+  food: 'restaurant-outline',
+  music: 'musical-notes-outline',
+  kindness: 'heart-outline',
+  sun: 'sunny-outline',
+  spa: 'flower-outline',
+  bedroom: 'bed-outline',
+  'coffee-off': 'cafe-outline',
+  'phone-off': 'phone-portrait-outline',
+  'news-off': 'newspaper-outline',
+  focus: 'eye-outline',
+  meditation: 'leaf-outline',
+  breath: 'airplane-outline',
+};
+
+// Função para validar e mapear ícones
+const getValidIcon = (iconName: string | undefined): keyof typeof Ionicons.glyphMap => {
+  if (!iconName) return 'bulb-outline';
+  
+  // Verificar se está no mapeamento
+  if (iconMap[iconName]) {
+    return iconMap[iconName];
+  }
+  
+  // Verificar se é um ícone válido do Ionicons
+  if (iconName in Ionicons.glyphMap) {
+    return iconName as keyof typeof Ionicons.glyphMap;
+  }
+  
+  // Retornar ícone padrão se não for válido
+  return 'bulb-outline';
+};
+
 export const TipsScreen: React.FC = () => {
   const theme = useTheme();
   const [recommendedTips, setRecommendedTips] = useState<Tip[]>([]);
@@ -78,7 +114,7 @@ export const TipsScreen: React.FC = () => {
                     ]}
                   >
                     <Ionicons
-                      name={(tip.icon as keyof typeof Ionicons.glyphMap) || 'bulb-outline'}
+                      name={getValidIcon(tip.icon)}
                       size={28}
                       color={tip.color || theme.colors.primary}
                     />
